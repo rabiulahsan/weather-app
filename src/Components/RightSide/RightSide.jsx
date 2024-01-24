@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import useAllData from "../useAllData/useAllData";
 import useTime from "../useTime/useTime";
 import { useEffect, useState } from "react";
+import { FaTemperatureHigh, FaWind } from "react-icons/fa";
 
 const RightSide = () => {
   const [allData, isLoading] = useAllData();
@@ -51,21 +52,21 @@ const RightSide = () => {
     setRain(rainChancePercentage);
   }, [precip, precipprob]);
 
-  console.log(
-    conditions,
-    feelsLike,
-    icon,
-    humidity,
-    temp,
-    sunrise,
-    sunset,
-    uvindex,
-    visibility,
-    windspeed,
-    precip,
-    precipprob,
-    rain
-  );
+  // console.log(
+  //   conditions,
+  //   feelsLike,
+  //   icon,
+  //   humidity,
+  //   temp,
+  //   sunrise,
+  //   sunset,
+  //   uvindex,
+  //   visibility,
+  //   windspeed,
+  //   precip,
+  //   precipprob,
+  //   rain
+  // );
 
   // getting address
   const address = allData?.address;
@@ -81,18 +82,40 @@ const RightSide = () => {
             <p className="text-slate-700 dark:text-gray-200 font-bold text-3xl">
               {currentAddress}
             </p>
-            <p className="text-gray-600">{formattedDate}</p>
+            <p className="text-gray-600 dark:text-gray-400">{formattedDate}</p>
           </div>
-          <div className="">
+          <div className="flex gap-x-5 items-center">
             <div className="">
               <p className="text-slate-700 dark:text-gray-200 text-7xl font-bold">
                 {isLoading ? "..." : Math.round(temp)}&deg;c
               </p>
-              <p className="text-slate-600 dark:text-gray-300 ml-3">
+              <p className="text-slate-600 dark:text-gray-400 ml-4 text-sm">
                 Chance of rain: {rain}
               </p>
+              <p className="text-slate-600 dark:text-gray-200 text-xl font-semibold mt-3 ml-2">
+                {conditions}
+              </p>
             </div>
-            <div className=""></div>
+            <div className="">
+              <p className="text-slate-600 dark:text-gray-200 flex gap-x-1 items-center  font-semibold">
+                <span className="text-lg">
+                  <FaWind></FaWind>
+                </span>
+                <span className="text-slate-600 dark:text-gray-400 font-normal">
+                  wind speed{" "}
+                </span>
+                {windspeed} km/h
+              </p>
+              <p className="text-slate-600 dark:text-gray-200 flex gap-x-1 items-center mt-4 font-semibold">
+                <span className="text-lg">
+                  <FaTemperatureHigh></FaTemperatureHigh>
+                </span>
+                <span className="text-slate-600 dark:text-gray-400 font-normal">
+                  Feel like
+                </span>{" "}
+                {isLoading ? "..." : Math.round(feelsLike)}&deg;c
+              </p>
+            </div>
           </div>
         </div>
 
