@@ -10,7 +10,11 @@ const LeftSide = () => {
       <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold text-center mb-[1%]">
         7 Day Forecast
       </p>
-      {isLoading && <SkeletonCard number={7}></SkeletonCard>}
+      {isLoading && (
+        <div className="mt-5">
+          <SkeletonCard number={7}></SkeletonCard>
+        </div>
+      )}
       {allData?.days?.slice(0, 7).map((day, idx) => (
         <DailyCard key={idx} day={day} id={idx}></DailyCard>
       ))}

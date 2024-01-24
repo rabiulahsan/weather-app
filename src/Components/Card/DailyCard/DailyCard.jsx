@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 const DailyCard = ({ day, id }) => {
   const { conditions, datetime, tempmax, tempmin, icon } = day;
   // console.log(icon);
-  console.log(id);
+  // console.log(id);
 
   const date = dayjs(datetime).format("ddd");
 
