@@ -66,7 +66,9 @@ const Navbar = () => {
 
   return (
     <div className="flex w-full py-[2%] gap-x-[8%]">
-      <div className="italic font-extrabold text-3xl text-sky-500">Weather</div>
+      <div className="italic font-extrabold text-3xl text-slate-600 dark:text-sky-400">
+        Weather
+      </div>
       <div className="flex justify-between items-center w-full">
         <div className=" w-full">
           <input
