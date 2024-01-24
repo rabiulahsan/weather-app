@@ -12,7 +12,7 @@ const LeftSide = () => {
       </p>
       {isLoading && <SkeletonCard number={7}></SkeletonCard>}
       {allData?.days?.slice(0, 7).map((day, idx) => (
-        <DailyCard key={idx} day={day}></DailyCard>
+        <DailyCard key={idx} day={day} id={idx}></DailyCard>
       ))}
     </div>
   );
