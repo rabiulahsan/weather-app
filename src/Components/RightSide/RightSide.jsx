@@ -3,7 +3,9 @@ import dayjs from "dayjs";
 import useAllData from "../useAllData/useAllData";
 import useTime from "../useTime/useTime";
 import { useEffect, useState } from "react";
-import { FaTemperatureHigh, FaWind } from "react-icons/fa";
+import { FaTemperatureHigh, FaWind, FaSun } from "react-icons/fa";
+import { FaDroplet } from "react-icons/fa6";
+import { GiSunrise, GiSunset } from "react-icons/gi";
 
 const RightSide = () => {
   const [allData, isLoading] = useAllData();
@@ -21,13 +23,17 @@ const RightSide = () => {
   const icon = allData?.currentConditions?.icon;
   const humidity = allData?.currentConditions?.humidity;
   const temp = allData?.currentConditions?.temp;
-  const sunrise = allData?.currentConditions?.sunset;
+  const sunrise = allData?.currentConditions?.sunrise;
   const sunset = allData?.currentConditions?.sunset;
   const uvindex = allData?.currentConditions?.uvindex;
-  const visibility = allData?.currentConditions?.visibility;
   const windspeed = allData?.currentConditions?.windspeed;
   const precip = allData?.currentConditions?.precip;
   const precipprob = allData?.currentConditions?.precipprob;
+
+  // for formatting sunset and sunrises time
+  const fixedDate = "2023-01-01";
+  const formattedSunrise = dayjs(`${fixedDate} ${sunrise}`).format("h:mm A");
+  const formattedSunset = dayjs(`${fixedDate} ${sunset}`).format("h:mm A");
 
   //getting chance of raining
   useEffect(() => {
@@ -51,22 +57,6 @@ const RightSide = () => {
     const rainChancePercentage = getRainChancePercentage(precip, precipprob);
     setRain(rainChancePercentage);
   }, [precip, precipprob]);
-
-  // console.log(
-  //   conditions,
-  //   feelsLike,
-  //   icon,
-  //   humidity,
-  //   temp,
-  //   sunrise,
-  //   sunset,
-  //   uvindex,
-  //   visibility,
-  //   windspeed,
-  //   precip,
-  //   precipprob,
-  //   rain
-  // );
 
   // getting address
   const address = allData?.address;
@@ -124,8 +114,61 @@ const RightSide = () => {
           <img src={`${icon}.png`} alt="" className="h-[150px]" />
         </div>
       </div>
-      <div className="bg-stone-200 dark:bg-slate-700 rounded-md">2nd</div>
-      <div className="bg-stone-200 dark:bg-slate-700 rounded-md">hourly</div>
+      <div className="bg-stone-300 dark:bg-slate-700 rounded-2xl p-[3%]">
+        <p className="mb-4 text-slate-600 dark:text-gray-300 font-semibold">
+          Air Conditions
+        </p>
+        <div className="flex justify-around items-center mb-[4%] ml-[7%]">
+          <div className="">
+            <p className="flex items-center  text-slate-600 dark:text-gray-300">
+              <span className="mr-2 text-lg">
+                <FaSun></FaSun>
+              </span>
+              UV index
+            </p>
+            <p className="ml-7 text-2xl text-slate-700 dark:text-gray-300 font-semibold">
+              {uvindex}
+            </p>
+          </div>
+          <div className="">
+            <p className="flex items-center  text-slate-600 dark:text-gray-300">
+              <span className="mr-2 text-lg">
+                <FaDroplet></FaDroplet>
+              </span>
+              Humidity
+            </p>
+            <p className="ml-7 text-2xl text-slate-700 dark:text-gray-300 font-semibold">
+              {humidity}
+            </p>
+          </div>
+          <div className="">
+            <p className="flex items-center  text-slate-600 dark:text-gray-300">
+              <span className="mr-2 text-lg">
+                <GiSunrise></GiSunrise>
+              </span>
+              Sunrise
+            </p>
+            <p className="ml-7 text-2xl text-slate-700 dark:text-gray-300 font-semibold">
+              {isLoading ? "..." : formattedSunrise}
+            </p>
+          </div>
+          <div className="">
+            <p className="flex items-center  text-slate-600 dark:text-gray-300">
+              <span className="mr-2 text-lg">
+                <GiSunset></GiSunset>
+              </span>
+              Sunset
+            </p>
+            <p className="ml-7 text-2xl text-slate-700 dark:text-gray-300 font-semibold">
+              {isLoading ? "..." : formattedSunset}
+            </p>
+          </div>
+          <div className=""></div>
+        </div>
+      </div>
+      <div className="bg-stone-300 dark:bg-slate-700 rounded-md mt-[5%]">
+        hourly
+      </div>
     </div>
   );
 };

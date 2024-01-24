@@ -6,7 +6,7 @@ const LeftSide = () => {
   const [allData, isLoading] = useAllData();
 
   return (
-    <div className="bg-stone-200 dark:bg-slate-700 rounded-2xl px-[8%] py-5">
+    <div className="bg-stone-300 dark:bg-slate-700 rounded-2xl px-[8%] py-5">
       <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold text-center mb-[1%]">
         7 Day Forecast
       </p>

@@ -72,7 +72,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full">
         <div className=" w-full">
           <input
-            className=" w-2/3  bg-stone-200 dark:bg-slate-600 dark:text-white text-gray-700   rounded-l-md py-[11px] px-4 focus:outline-none "
+            className=" w-2/3  bg-stone-300 dark:bg-slate-600 dark:text-white text-gray-700   rounded-l-md py-[11px] px-4 focus:outline-none "
             type="text"
             placeholder="search your city here"
           />
