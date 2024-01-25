@@ -1,6 +1,7 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import dayjs from "dayjs";
 import useAllData from "../useAllData/useAllData";
+import HourlyCard from "../Card/HourlyCard/HourlyCard";
 import useTime from "../useTime/useTime";
 import { useEffect, useState } from "react";
 import { FaTemperatureHigh, FaWind, FaSun } from "react-icons/fa";
@@ -11,6 +12,15 @@ const RightSide = () => {
   const [allData, isLoading] = useAllData();
   const [rain, setRain] = useState();
   const [time] = useTime();
+
+  //getting the daily hours information
+  // console.log(allData?.days?.[0]?.hours);
+  const hours = allData?.days?.[0]?.hours;
+  const selectedIndexes = [6, 9, 12, 15, 18, 21];
+  const hoursInfo = hours?.filter((value, index) =>
+    selectedIndexes?.includes(index)
+  );
+  // console.log(hoursInfo);
 
   //formatting the getting data
   const formattedDate = dayjs(time?.datetime).format(
@@ -62,7 +72,6 @@ const RightSide = () => {
   const address = allData?.address;
   const newAddress = address?.charAt(0)?.toUpperCase() + address?.slice(1);
   const country = allData?.resolvedAddress?.split(" ")[1];
-  const currentAddress = newAddress + ", " + country;
 
   return (
     <div className="">
@@ -70,7 +79,14 @@ const RightSide = () => {
         <div className="flex flex-col gap-y-10">
           <div className="">
             <p className="text-slate-700 dark:text-gray-200 font-bold text-3xl">
-              {currentAddress}
+              {isLoading ? (
+                "..."
+              ) : (
+                <span>
+                  {newAddress}
+                  {country ? ", " + country : ""}
+                </span>
+              )}
             </p>
             <p className="text-gray-600 dark:text-gray-400">{formattedDate}</p>
           </div>
@@ -166,8 +182,15 @@ const RightSide = () => {
           <div className=""></div>
         </div>
       </div>
-      <div className="bg-stone-300 dark:bg-slate-700 rounded-md mt-[5%]">
-        hourly
+      <div className="bg-stone-300 dark:bg-slate-700 rounded-2xl p-[3%] mt-[4%]">
+        <p className="mb-4 text-slate-600 dark:text-gray-300 font-semibold">
+          Today&apos;s Forecast
+        </p>
+        <div className="flex justify-between items-center px-[5%]">
+          {hoursInfo?.map((hour, idx) => (
+            <HourlyCard key={idx} hour={hour} id={idx}></HourlyCard>
+          ))}
+        </div>
       </div>
     </div>
   );
