@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 /* eslint-disable react/prop-types */
 const DailyCard = ({ day, id }) => {
   const { conditions, datetime, tempmax, tempmin, icon } = day;
-  // console.log(icon);
+  console.log(icon);
   // console.log(id);
 
   const date = dayjs(datetime).format("ddd");

@@ -13,6 +13,9 @@ const RightSide = ({ allData, time, isLoading }) => {
 
   //getting the daily hours information
   const hours = allData?.days?.[0]?.hours;
+  hours?.map((data) => {
+    console.log(data?.icon);
+  });
   const selectedIndexes = [6, 9, 12, 15, 18, 21];
   const hoursInfo = hours?.filter((value, index) =>
     selectedIndexes?.includes(index)

@@ -17,7 +17,9 @@ const App = () => {
   useEffect(() => {
     //fetchdata
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchValue}?unitGroup=metric&key=M2X9M4E6C9M46XCT7B36GSQPJ&contentType=json`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${
+        searchValue ? searchValue : "barisal"
+      }?unitGroup=metric&key=M2X9M4E6C9M46XCT7B36GSQPJ&contentType=json`
     )
       .then((res) => res.json())
       .then((data) => {
