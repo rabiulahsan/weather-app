@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useRef, useState } from "react";
 import {
   BsFillSunFill,
   BsFillMoonFill,
   BsFillDisplayFill,
 } from "react-icons/bs";
 
-const Navbar = () => {
+const Navbar = ({ handleSearch }) => {
   //get the theme according to system or localstorage
   const selectedTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(selectedTheme ? selectedTheme : "system");
@@ -64,6 +65,9 @@ const Navbar = () => {
     }
   });
 
+  //for getting search data
+  const searchRef = useRef(null);
+
   return (
     <div className="flex w-full py-[2%] gap-x-[8%]">
       <div className="italic font-extrabold text-3xl text-slate-600 dark:text-sky-400">
@@ -75,8 +79,12 @@ const Navbar = () => {
             className=" w-2/3  bg-stone-300 dark:bg-slate-600 dark:text-white text-gray-700   rounded-l-md py-[11px] px-4 focus:outline-none "
             type="text"
             placeholder="search your city here"
+            ref={searchRef}
           />
-          <button className="px-5 pb-[9.2px] pt-[8.5px] bg-slate-700 dark:bg-sky-400 text-white text-lg rounded-r-md font-semibold">
+          <button
+            onClick={() => handleSearch(searchRef?.current?.value)}
+            className="px-5 pb-[9.2px] pt-[8.5px] bg-slate-700 dark:bg-sky-400 text-white text-lg rounded-r-md font-semibold"
+          >
             Search
           </button>
         </div>

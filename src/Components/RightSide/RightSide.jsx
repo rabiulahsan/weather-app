@@ -1,17 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unsafe-optional-chaining */
 import dayjs from "dayjs";
-import useAllData from "../useAllData/useAllData";
 import HourlyCard from "../Card/HourlyCard/HourlyCard";
-import useTime from "../useTime/useTime";
+
 import { useEffect, useState } from "react";
 import { FaTemperatureHigh, FaWind, FaSun } from "react-icons/fa";
 import { FaDroplet } from "react-icons/fa6";
 import { GiSunrise, GiSunset } from "react-icons/gi";
 
-const RightSide = () => {
-  const [allData, isLoading] = useAllData();
+const RightSide = ({ allData, time, isLoading }) => {
   const [rain, setRain] = useState();
-  const [time] = useTime();
 
   //getting the daily hours information
   const hours = allData?.days?.[0]?.hours;
