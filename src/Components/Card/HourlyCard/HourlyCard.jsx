@@ -10,7 +10,7 @@ const HourlyCard = ({ hour, id }) => {
 
   return (
     <div
-      className={`flex flex-col gap-y-2  items-center px-[4%]${
+      className={`flex flex-col gap-y-4  items-center px-[4%]${
         id === 5 ? "" : " border-r border-r-gray-400 dark:border-r-slate-500"
       }`}
     >

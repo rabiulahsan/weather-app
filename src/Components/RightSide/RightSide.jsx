@@ -76,7 +76,8 @@ const RightSide = () => {
   return (
     <div className="">
       <div className="pl-[5%] pb-[5%] pt-[2%] pr-[8%] flex justify-between items-center">
-        <div className="flex flex-col gap-y-10">
+        {/* displaying the weather details  */}
+        <div className="flex flex-col gap-y-12">
           <div className="">
             <p className="text-slate-700 dark:text-gray-200 font-bold text-3xl">
               {isLoading ? (
@@ -90,7 +91,7 @@ const RightSide = () => {
             </p>
             <p className="text-gray-600 dark:text-gray-400">{formattedDate}</p>
           </div>
-          <div className="flex gap-x-5 items-center">
+          <div className="flex gap-x-5 items-center mb-4">
             <div className="">
               <p className="text-slate-700 dark:text-gray-200 text-7xl font-bold">
                 {isLoading ? "..." : Math.round(temp)}&deg;c
@@ -127,9 +128,11 @@ const RightSide = () => {
 
         {/* for image  */}
         <div className="">
-          <img src={`${icon}.png`} alt="" className="h-[150px]" />
+          <img src={`${icon}.png`} alt="" className="h-[200px]" />
         </div>
       </div>
+
+      {/* air condition box  */}
       <div className="bg-stone-300 dark:bg-slate-700 rounded-2xl p-[3%]">
         <p className="mb-4 text-slate-600 dark:text-gray-300 font-semibold">
           Air Conditions
@@ -182,11 +185,13 @@ const RightSide = () => {
           <div className=""></div>
         </div>
       </div>
+
+      {/* todays forecast box  */}
       <div className="bg-stone-300 dark:bg-slate-700 rounded-2xl p-[3%] mt-[4%]">
         <p className="mb-4 text-slate-600 dark:text-gray-300 font-semibold">
           Today&apos;s Forecast
         </p>
-        <div className="flex justify-between items-center px-[5%]">
+        <div className="flex justify-between items-center px-[5%] my-[2%]">
           {hoursInfo?.map((hour, idx) => (
             <HourlyCard key={idx} hour={hour} id={idx}></HourlyCard>
           ))}
