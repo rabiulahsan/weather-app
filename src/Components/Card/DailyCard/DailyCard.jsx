@@ -11,7 +11,7 @@ const DailyCard = ({ day, id }) => {
   return (
     <div
       className={`flex justify-between items-center py-5 ${
-        id === 6
+        id === 9
           ? ""
           : "border-b-[.4px] border-b-gray-400 dark:border-b-slate-500"
       }`}
