@@ -14,7 +14,7 @@ const HourlyCard = ({ hour, id }) => {
         id === 5 ? "" : " border-r border-r-gray-400 dark:border-r-slate-500"
       }`}
     >
-      <p className="text-slate-600 dark:text-gray-400 font-semibold text-sm">
+      <p className="text-slate-600 dark:text-gray-300 font-semibold text-sm">
         {formattedHourTime}
       </p>
       <img src={`${icon}.png`} alt="" className="w-[40px]" />

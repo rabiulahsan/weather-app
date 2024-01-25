@@ -16,11 +16,14 @@ const RightSide = () => {
   //getting the daily hours information
   // console.log(allData?.days?.[0]?.hours);
   const hours = allData?.days?.[0]?.hours;
+
+  hours?.map((data) => {
+    console.log(data?.icon);
+  });
   const selectedIndexes = [6, 9, 12, 15, 18, 21];
   const hoursInfo = hours?.filter((value, index) =>
     selectedIndexes?.includes(index)
   );
-  // console.log(hoursInfo);
 
   //formatting the getting data
   const formattedDate = dayjs(time?.datetime).format(
@@ -93,10 +96,10 @@ const RightSide = () => {
           </div>
           <div className="flex gap-x-5 items-center mb-4">
             <div className="">
-              <p className="text-slate-700 dark:text-gray-200 text-7xl font-bold">
+              <p className="text-slate-700 dark:text-gray-200 text-8xl font-bold">
                 {isLoading ? "..." : Math.round(temp)}&deg;c
               </p>
-              <p className="text-slate-600 dark:text-gray-400 ml-4 text-sm">
+              <p className="text-slate-600 dark:text-gray-400 ml-2 text-sm">
                 Chance of rain: {rain}
               </p>
               <p className="text-slate-600 dark:text-gray-200 text-xl font-semibold mt-3 ml-2">
